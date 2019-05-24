@@ -2,16 +2,16 @@ package com.rafa.brewer.dto;
 
 public class FotoDTO
 {
-	private String nomeFoto;
+	private String nome;
 	private String contentType;
 	
-	public String getNomeFoto()
+	public String getNome()
 	{
-		return nomeFoto;
+		return nome;
 	}
-	public void setNomeFoto(String nomeFoto)
+	public void setNome(String nome)
 	{
-		this.nomeFoto = nomeFoto;
+		this.nome = nome;
 	}
 	public String getContentType()
 	{
@@ -22,9 +22,9 @@ public class FotoDTO
 		this.contentType = contentType;
 	}
 	
-	public FotoDTO(String nomeFoto, String contentType)
+	public FotoDTO(String nome, String contentType)
 	{
-		this.nomeFoto = nomeFoto;
+		this.nome = nome;
 		this.contentType = contentType;
 	}
 }

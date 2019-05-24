@@ -18,7 +18,6 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -34,9 +33,8 @@ public class Cerveja
 	private Long id;
 	@NotBlank(message="SKU é obrigatório") @SKU
 	private String sku;
-	@NotBlank(message="Nome é obrigatório")
+	@NotBlank(message="Nome é obrigatório") @Size(min=3, max=50, message="Nome deve ter mínimo de 3 máximo de 50 caracteres")
 	private String nome;
-	@NotBlank(message="A descrição é obrigatória")	@Size(min=1, max=50, message="Nome deve ter mínimo de 1 máximo de 50 caracteres")	
 	private String descricao;
 	@NotNull(message="O valor é obrigatório")
 	@DecimalMin(value="0.99", message="Valor deve ser maior que R$0,99") @DecimalMax(value="1000.00", message="Valor deve ser menor que R$1.000")
@@ -63,13 +61,16 @@ public class Cerveja
 	@ManyToOne @JoinColumn(name="codigo_estilo")
 	@NotNull(message="O estilo é obrigatório")
 	private Estilo estilo;
+	@Column
+	private String foto;
+	@Column(name="content_type")
+	private String contentType;
 	
 	@PrePersist @PreUpdate
 	private void prePersistUpdate()
 	{
 		sku = sku.toUpperCase();
 	}
-	
 	
 	public String getSku()
 	{
@@ -159,6 +160,23 @@ public class Cerveja
 	{
 		this.estilo = estilo;
 	}
+	public String getFoto()
+	{
+		return foto;
+	}
+	public void setFoto(String foto)
+	{
+		this.foto = foto;
+	}
+	public String getContentType()
+	{
+		return contentType;
+	}
+	public void setContentType(String contentType)
+	{
+		this.contentType = contentType;
+	}
+
 	@Override
 	public int hashCode()
 	{
