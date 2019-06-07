@@ -19,7 +19,9 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.util.StringUtils;
 
 import com.rafa.brewer.validation.SKU;
 
@@ -175,6 +177,11 @@ public class Cerveja
 	public void setContentType(String contentType)
 	{
 		this.contentType = contentType;
+	}
+	
+	public String getFotoOuMock()
+	{
+		return !StringUtils.isEmpty(foto) ? foto : "cerveja-mock.png";
 	}
 
 	@Override

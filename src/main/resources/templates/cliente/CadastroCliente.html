@@ -29,14 +29,14 @@
 			<form method="POST" th:object="${cerveja}" class="form-vertical  js-form-loading">
 		
 				<div class="row">
-					<div class="col-sm-12  form-group">
+					<div class="col-sm-12  form-group bw-required">
 						<label for="nome">Nome</label>
 						<input id="nome" type="text" class="form-control"/>
 					</div>
 					</div>
 				
 				<div class="row">
-				<div class="col-sm-4  form-group">
+				<div class="col-sm-4  form-group bw-required">
 						<label for="tipo-pessoa">Tipo pessoa</label>
 						<div>
 							<div class="radio  radio-inline">
@@ -50,19 +50,19 @@
 						</div>
 					</div>
 					
-					<div class="col-sm-8  form-group">
+					<div class="col-sm-8  form-group bw-required">
 						<label for="cpf-cnpj">CPF/CNPJ</label>
 						<input id="cpf-cnpj" type="text" class="form-control"/>
 					</div>
 					</div>
 					
 					<div class="row">
-					<div class="col-sm-4  form-group">
+					<div class="col-sm-4  form-group bw-required">
 						<label for="telefone">Telefone</label>
 						<input id="telefone" type="text" class="form-control"/>
 					</div>
 				
-					<div class="col-sm-8  form-group">
+					<div class="col-sm-8  form-group bw-required">
 						<label for="nome">E-mail</label>
 						<input id="email" type="text" class="form-control"/>
 					</div>
@@ -101,7 +101,7 @@
 						</div>
 					</div>
 					
-					<div class="col-sm-4  form-group">
+					<div class="col-sm-4  form-group bw-required">
 						<label for="cidade">Cidade</label>
 						<div class="bw-field-action">
 						<select id="cidade" class="form-control">
