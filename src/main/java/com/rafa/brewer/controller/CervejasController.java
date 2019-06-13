@@ -1,9 +1,13 @@
 package com.rafa.brewer.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.rafa.brewer.controller.page.PageWrapper;
 import com.rafa.brewer.model.Cerveja;
 import com.rafa.brewer.model.Origem;
 import com.rafa.brewer.model.Sabor;
 import com.rafa.brewer.repository.Cervejas;
 import com.rafa.brewer.repository.Estilos;
+import com.rafa.brewer.repository.filter.CervejaFilter;
 import com.rafa.brewer.service.CadastroCervejaService;
 
 @Controller
@@ -57,13 +63,16 @@ public class CervejasController
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar()
+	public ModelAndView pesquisar(CervejaFilter cervejaFilter, BindingResult result,@PageableDefault(size=2) 
+								  Pageable pageable, HttpServletRequest httpServletRequest)
 	{
 		ModelAndView mv = new ModelAndView("cerveja/PesquisaCervejas");
 		mv.addObject("estilos", estilos.findAll());
 		mv.addObject("sabores", Sabor.values());
 		mv.addObject("origens", Origem.values());
-		mv.addObject("cervejas", cervejas.findAll());
+		
+		PageWrapper<Cerveja> paginaWrapper = new PageWrapper<>(cervejas.filtrar(cervejaFilter, pageable), httpServletRequest);
+		mv.addObject("pagina", paginaWrapper);
 		
 		return mv;
 	}
